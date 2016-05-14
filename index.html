@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="hu-HU"  data-ng-app="myApp">
+	<head>
+		<meta charset="utf-8" />
+		<title> Demo App 1 </title>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	</head>
+	<body data-ng-controller="MainController">
+	    
+		<h1> {{ title }} </h1>
+		<h2>  {{ promo }} </h2>
+		Searching: <input type="text" data-ng-model="searchKey" data-ng-change="change(searchKey)">
+		<span data-ng-show="searchKey" > Searching for : '{{ searchKey }}'</span>
+		
+		<textarea> {{ response }} </textarea>
+		<div data-ng-repeat="movie in data">
+		   {{ movie.Title }}
+		</div>
+		
+		<!-- angular module -->
+		<script src="app.js"> </script>
+		
+		<!-- controller -->
+		<script src="MainController.js"> </script>
+	</body>
+</html>
