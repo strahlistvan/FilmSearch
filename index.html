@@ -2,21 +2,30 @@
 <html lang="hu-HU"  data-ng-app="myApp">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title> Demo App 1 </title>
+		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css" />
+		<link rel="stylesheet" href="style.css" />
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="angular.dcb-img-fallback.min.js"> </script>
 	</head>
 	<body data-ng-controller="MainController">
-	    
-		<h1> {{ title }} </h1>
-		<h2>  {{ promo }} </h2>
-		Searching: <input type="text" data-ng-model="searchKey" data-ng-change="change(searchKey)">
-		<span data-ng-show="searchKey" > Searching for : '{{ searchKey }}'</span>
-		
-		<textarea> {{ response }} </textarea>
-		<div data-ng-repeat="movie in data">
-		   {{ movie.Title }}
+	    <div class="w3-container"> <!-- main container -->
+			<h1> {{ title }} </h1>
+			<h2>  {{ promo }} </h2>
+			Searching: <input type="text" data-ng-model="searchKey" data-ng-change="changeInput()"> <button data-ng-click="changeInput()">  Search films </button>  <br />
+			<span data-ng-show="searchKey" > Searching for : '{{ searchKey }}'</span>
+			<hr />
+			
+			<!--textarea> {{ response }} </textarea-->
+			<div data-ng-repeat="movie in data">
+			   <div class="w3-quarter" > 
+					<img src="def.jpg" data-ng-src="{{ movie.Poster }}"  alt="{{ movie.Title }} poster" class="w3-round"   fallback-src /> <br />
+					<div class="titleDiv" > Title: {{ movie.Title }}  ({{ movie.Year}}) </div> <br />
+					<button  data-ng-modell="{{ movie.imdbID }}" data-ng-click = 'showMore()' > Show me more details </button> <br />
+				</div>
+			</div>
 		</div>
-		
 		<!-- angular module -->
 		<script src="app.js"> </script>
 		
