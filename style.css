@@ -18,3 +18,20 @@ img {
 img:hover {
 	cursor: pointer;
 }
+
+div#moviePosterDiv {
+	float: left;
+}
+
+div#movieDataDiv {
+	float: left;
+	text-align: left;
+	margin-left: 10px;
+	max-width: 60%;
+}
+
+p#movieDataPar {
+   clear: both;
+   text-align: justify;
+   margin-bottom: 50px;
+}

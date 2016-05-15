@@ -13,23 +13,54 @@
 	    <div class="w3-container"> <!-- main container -->
 			<h1> {{ title }} </h1>
 			<h2>  {{ promo }} </h2>
-			Searching: <input type="text" data-ng-model="searchKey" data-ng-change="changeInput()"> <button data-ng-click="changeInput()">  Search films </button>  <br />
+			Searching: <input type="text" data-ng-model="searchKey" data-ng-change="changeInput()"> 
+			<button data-ng-click="changeInput()" class="w3-btn w3-round">  Search films </button>  <br />
 			<span data-ng-show="searchKey" > Searching for : '{{ searchKey }}'</span>
 			<hr />
 			
 			<!--textarea> {{ response }} </textarea-->
-			<div data-ng-repeat="movie in data">
-			   <div class="w3-quarter" > 
-					<img src="def.jpg" data-ng-src="{{ movie.Poster }}"  alt="{{ movie.Title }} poster" class="w3-round"   fallback-src /> <br />
-					<div class="titleDiv" > Title: {{ movie.Title }}  ({{ movie.Year}}) </div> <br />
-					<button  data-ng-modell="{{ movie.imdbID }}" data-ng-click = 'showMore()' > Show me more details </button> <br />
+			<div id="movieDetailsDiv" ng-controller="MovieController">
+				<div data-ng-repeat="movie in allMovies">
+				   <div class="w3-quarter" > 
+						<img src=" " data-ng-src="{{ movie.Poster }}"  alt="{{ movie.Title }} poster" class="w3-round"   data-fallback-src /> <br />
+						<div class="titleDiv" > Title: {{ movie.Title }}  ({{ movie.Year}}) </div> <br />
+						<button  id="button_{{movie.imdbID}}" data-ng-click= "showMore( movie.imdbID )" class="w3-btn w3-round"> Show me more details </button> <br />
+					</div>
+				</div>
+			
+				<!-- The Modal -->
+				<div id="myModal" class="w3-modal">
+					<div class="w3-modal-content">
+						<div class="w3-container">
+							  <span onclick="document.getElementById('myModal').style.display='none'" class="w3-closebtn">&times;</span>
+							  <h3 id="modalMovieTitleDiv"> {{ movieData.Title }} ( {{ movieData.Year }}) </h3>
+							  <div id="moviePosterDiv">
+									<img src=" " data-ng-src="{{ movieData.Poster }}"  alt="{{ movieData.Title }} poster" class="w3-round" data-fallback-src /> <br />
+							  </div>
+							  <div id="movieDataDiv">
+								  <b> Run time: </b>  {{ movieData.Runtime }} <br />
+								  <b> Released: </b>   {{  movieData.Released }} <br />
+								  <b> Genre: </b>   {{ movieData.Genre }} <br />
+								  <b> IMDB rating: </b> {{ movieData.imdbRating }} / 10.0 <br />
+								  <b> Rated: </b> {{ movieData.Rated }} <br />
+								  <b> Director: </b> {{ movieData.Director }} <br />
+								  <b> Writer: </b> {{ movieData.Writer }} <br />
+								  <b> Actors: </b>  {{ movieData.Actors }} <br />
+							  </div>
+							  <p id="movieDataPar"> {{ movieData.Plot }} </p>
+						</div>
+					</div>
 				</div>
 			</div>
+		
 		</div>
+		
 		<!-- angular module -->
 		<script src="app.js"> </script>
 		
 		<!-- controller -->
 		<script src="MainController.js"> </script>
+		<script src="MovieController.js"> </script>
+		
 	</body>
 </html>
